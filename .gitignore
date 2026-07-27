@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+.pub-cache/
+.dart_tool/
+
+# Build
+build/
+dist/
+*.js
+*.js.map
+*.o
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+
+# Generated
+coverage/

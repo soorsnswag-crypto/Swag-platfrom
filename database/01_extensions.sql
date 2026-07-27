@@ -1,11 +1,9 @@
--- Enable uuid-ossp
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- ==========================================
+-- Swag Platform
+-- 01_extensions.sql
+-- ==========================================
 
--- Enable pgcrypto
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
-
--- Enable pg_trgm
-CREATE EXTENSION IF NOT EXISTS "pg_trgm";
-
--- Enable unaccent
-CREATE EXTENSION IF NOT EXISTS "unaccent";
+create extension if not exists "uuid-ossp";
+create extension if not exists pgcrypto;
+create extension if not exists pg_trgm;
+create extension if not exists unaccent;

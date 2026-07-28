@@ -1,0 +1,16 @@
+{
+  "name": "swag-platform-backend",
+  "version": "1.0.0",
+  "description": "Swag Platform Backend API - Cloudflare Workers + Hono",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit --skipLibCheck",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/worker.mjs --format=esm --platform=browser --target=es2022 --external:hono --minify"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "^0.4.3",
+    "esbuild": "^0.28.1",
+    "hono": "^4.12.32",
+    "zod": "^3.25.76"
+  }
+}

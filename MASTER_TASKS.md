@@ -14,15 +14,15 @@
 | Documentation | 38 | 38 | 0 |
 | Database | 8 | 8 | 0 |
 | Supabase Setup | 6 | 6 | 0 |
-| Backend | 10 | 0 | 10 |
+| Backend | 10 | 2 | 8 |
 | Frontend | 16 | 0 | 16 |
 | Integration | 6 | 0 | 6 |
 | Testing | 6 | 0 | 6 |
 | Deployment | 7 | 0 | 7 |
 | Launch | 4 | 0 | 4 |
-| **Total** | **106** | **57** | **49** |
+| **Total** | **106** | **59** | **47** |
 
-**Overall Completion: 54%**
+**Overall Completion: 56%**
 
 ---
 
@@ -120,8 +120,8 @@
 
 ### Cloudflare Workers / Supabase Edge Functions
 
-- [ ] Create Auth endpoints (signup, login, refresh, logout)
-- [ ] Create User CRUD endpoints
+- [x] Create Auth endpoints (signup, login, refresh, logout)
+- [x] Create User CRUD endpoints
 - [ ] Create Reel endpoints (upload, list, delete)
 - [ ] Create Music search & integration endpoints
 - [ ] Create Wallet endpoints (balance, transactions)

@@ -64,19 +64,42 @@ Backups enabled
 
 # Environment Variables
 
-SUPABASE_URL
+## App
+APP_ENV — Environment (development/staging/production)
+APP_NAME — Application display name
+APP_VERSION — Current version
 
-SUPABASE_ANON_KEY
+## Supabase
+SUPABASE_URL — Supabase project URL
+SUPABASE_ANON_KEY — Public anonymous key (safe for frontend)
+SUPABASE_SERVICE_ROLE_KEY — Secret service role key (backend only)
+SUPABASE_ACCESS_TOKEN — Supabase management API token
 
-SUPABASE_SERVICE_ROLE_KEY
+## Cloudflare
+CLOUDFLARE_API_KEY — Cloudflare global API key
+CLOUDFLARE_API_TOKEN — Cloudflare API token
+CLOUDFLARE_ACCOUNT_ID — Cloudflare account identifier
 
-JWT_SECRET
+## Cloudflare R2
+R2_ENDPOINT — R2 S3-compatible endpoint URL
+R2_ACCESS_KEY_ID — R2 access key
+R2_SECRET_ACCESS_KEY — R2 secret access key
+R2_TOKEN_VALUE — R2 token value
 
-APP_ENV
+## JWT
+JWT_SECRET — Token signing secret
 
-API_BASE_URL
+## API
+API_BASE_URL — Backend API base URL
+API_VERSION — API version prefix
 
-STORAGE_BUCKET
+## Storage
+STORAGE_BUCKET — Default storage bucket name
+
+## Supabase Project (Current)
+SUPABASE_URL: https://inzkfhonicyeuglcfhgl.supabase.co
+CLOUDFLARE_ACCOUNT_ID: 488a8034477677c405fd7f66ee013c24
+R2_ENDPOINT: https://488a8034477677c405fd7f66ee013c24.r2.cloudflarestorage.com
 
 ---
 

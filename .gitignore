@@ -26,9 +26,26 @@ Thumbs.db
 .env
 .env.local
 .env.production
+.env.staging
 
 # Logs
 *.log
 
 # Generated
 coverage/
+
+# Flutter
+.dart_tool/
+.packages
+*.freezed.dart
+*.g.dart
+*.gr.dart
+build/
+*.iml
+
+# Workers
+node_modules/
+dist/
+.wrangler/
+worker/
+

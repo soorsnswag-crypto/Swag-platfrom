@@ -13,16 +13,16 @@
 | Foundation | 5 | 5 | 0 |
 | Documentation | 38 | 38 | 0 |
 | Database | 8 | 8 | 0 |
-| Supabase Setup | 6 | 0 | 6 |
+| Supabase Setup | 6 | 6 | 0 |
 | Backend | 10 | 0 | 10 |
 | Frontend | 16 | 0 | 16 |
 | Integration | 6 | 0 | 6 |
 | Testing | 6 | 0 | 6 |
 | Deployment | 7 | 0 | 7 |
 | Launch | 4 | 0 | 4 |
-| **Total** | **106** | **51** | **55** |
+| **Total** | **106** | **57** | **49** |
 
-**Overall Completion: 48%**
+**Overall Completion: 54%**
 
 ---
 
@@ -107,12 +107,12 @@
 
 ## Phase 4 — Supabase Setup
 
-- [ ] Create Supabase project
-- [ ] Configure Authentication providers (Google, Email)
-- [ ] Run migrations (01–07) in order
-- [ ] Configure Storage buckets & upload policies
-- [ ] Set environment variables (URLs, keys, secrets)
-- [ ] Verify RLS policies with test queries
+- [x] Create Supabase project
+- [x] Configure Authentication providers (Google, Email)
+- [x] Run migrations (01–07) in order
+- [x] Configure Storage buckets & upload policies
+- [x] Set environment variables (URLs, keys, secrets)
+- [x] Verify RLS policies with test queries
 
 ---
 

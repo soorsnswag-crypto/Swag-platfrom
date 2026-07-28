@@ -17,7 +17,12 @@ values
     ('00000000-0000-0000-0000-000000000003', 'music_lover', 'Music Lover', 'Music is life', false, false),
     ('00000000-0000-0000-0000-000000000004', 'travel_reels', 'Travel Reels', 'Exploring the world one reel at a time', false, true),
     ('00000000-0000-0000-0000-000000000005', 'food_craze', 'Food Craze', 'Food reviews and recipes', false, true)
-on conflict (id) do nothing;
+on conflict (id) do update set
+    username = excluded.username,
+    display_name = excluded.display_name,
+    bio = excluded.bio,
+    is_verified = excluded.is_verified,
+    is_creator = excluded.is_creator;
 
 update profiles
 set follower_count = 3, following_count = 2
@@ -159,26 +164,46 @@ values
 on conflict (user_id, reel_id) do nothing;
 
 -- ------------------------------------------
--- Demo wallets
+-- Demo wallets (already created by on_auth_user_created trigger)
+-- Update balances only
 -- ------------------------------------------
-insert into wallets (id, user_id, balance, total_earned, total_withdrawn)
-values
-    ('00000000-0000-0000-0000-000000000050', '00000000-0000-0000-0000-000000000001', 150.00, 500.00, 350.00),
-    ('00000000-0000-0000-0000-000000000051', '00000000-0000-0000-0000-000000000002', 75.50, 200.00, 124.50),
-    ('00000000-0000-0000-0000-000000000052', '00000000-0000-0000-0000-000000000004', 42.00, 100.00, 58.00),
-    ('00000000-0000-0000-0000-000000000053', '00000000-0000-0000-0000-000000000005', 30.00, 80.00, 50.00)
-on conflict (id) do nothing;
+update wallets set balance = 150.00, total_earned = 500.00, total_withdrawn = 350.00 where user_id = '00000000-0000-0000-0000-000000000001';
+update wallets set balance = 75.50, total_earned = 200.00, total_withdrawn = 124.50 where user_id = '00000000-0000-0000-0000-000000000002';
+update wallets set balance = 42.00, total_earned = 100.00, total_withdrawn = 58.00 where user_id = '00000000-0000-0000-0000-000000000004';
+update wallets set balance = 30.00, total_earned = 80.00, total_withdrawn = 50.00 where user_id = '00000000-0000-0000-0000-000000000005';
 
 -- ------------------------------------------
 -- Demo wallet transactions
+-- Get wallet IDs dynamically
 -- ------------------------------------------
 insert into wallet_transactions (id, wallet_id, type, amount, balance_before, balance_after, description, status)
-values
-    ('00000000-0000-0000-0000-000000000060', '00000000-0000-0000-0000-000000000050', 'credit', 50.00, 100.00, 150.00, 'Monthly subscription revenue', 'completed'),
-    ('00000000-0000-0000-0000-000000000061', '00000000-0000-0000-0000-000000000050', 'withdraw', 100.00, 250.00, 150.00, 'Withdrawal to bank account', 'completed'),
-    ('00000000-0000-0000-0000-000000000062', '00000000-0000-0000-0000-000000000051', 'credit', 25.00, 50.50, 75.50, 'Creator earnings - July', 'completed'),
-    ('00000000-0000-0000-0000-000000000063', '00000000-0000-0000-0000-000000000052', 'credit', 12.00, 30.00, 42.00, 'Subscription payment', 'completed'),
-    ('00000000-0000-0000-0000-000000000064', '00000000-0000-0000-0000-000000000053', 'debit', 10.00, 40.00, 30.00, 'Premium subscription charge', 'completed')
+select
+    '00000000-0000-0000-0000-000000000060', w.id, 'credit', 50.00, 100.00, 150.00, 'Monthly subscription revenue', 'completed'
+from wallets w where w.user_id = '00000000-0000-0000-0000-000000000001'
+on conflict (id) do nothing;
+
+insert into wallet_transactions (id, wallet_id, type, amount, balance_before, balance_after, description, status)
+select
+    '00000000-0000-0000-0000-000000000061', w.id, 'withdraw', 100.00, 250.00, 150.00, 'Withdrawal to bank account', 'completed'
+from wallets w where w.user_id = '00000000-0000-0000-0000-000000000001'
+on conflict (id) do nothing;
+
+insert into wallet_transactions (id, wallet_id, type, amount, balance_before, balance_after, description, status)
+select
+    '00000000-0000-0000-0000-000000000062', w.id, 'credit', 25.00, 50.50, 75.50, 'Creator earnings - July', 'completed'
+from wallets w where w.user_id = '00000000-0000-0000-0000-000000000002'
+on conflict (id) do nothing;
+
+insert into wallet_transactions (id, wallet_id, type, amount, balance_before, balance_after, description, status)
+select
+    '00000000-0000-0000-0000-000000000063', w.id, 'credit', 12.00, 30.00, 42.00, 'Subscription payment', 'completed'
+from wallets w where w.user_id = '00000000-0000-0000-0000-000000000004'
+on conflict (id) do nothing;
+
+insert into wallet_transactions (id, wallet_id, type, amount, balance_before, balance_after, description, status)
+select
+    '00000000-0000-0000-0000-000000000064', w.id, 'debit', 10.00, 40.00, 30.00, 'Premium subscription charge', 'completed'
+from wallets w where w.user_id = '00000000-0000-0000-0000-000000000005'
 on conflict (id) do nothing;
 
 -- ------------------------------------------
@@ -214,7 +239,11 @@ values
     ('00000000-0000-0000-0000-000000000003', false, 'en', true, false),
     ('00000000-0000-0000-0000-000000000004', true, 'en', true, true),
     ('00000000-0000-0000-0000-000000000005', true, 'en', false, true)
-on conflict (user_id) do nothing;
+on conflict (user_id) do update set
+    dark_mode = excluded.dark_mode,
+    language = excluded.language,
+    push_notifications_enabled = excluded.push_notifications_enabled,
+    email_notifications_enabled = excluded.email_notifications_enabled;
 
 -- ------------------------------------------
 -- Demo device tokens
